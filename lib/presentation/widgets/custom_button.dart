@@ -18,18 +18,14 @@ class CustomButton extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
-
         decoration: BoxDecoration(
-          color: Color(0xff294466),
+          color: const Color(0xff294466),
           borderRadius: BorderRadius.circular(10)
         ),
-
         child: Padding(
           padding: padding,
           child: child,
         ),
-
-
       ),
     );
   }

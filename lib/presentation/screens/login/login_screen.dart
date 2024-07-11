@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: (state is AuthLoading)
                             ? const CircularProgressIndicator()
                             : const Text(
-                              "bIngresar",
+                              "Ingresar",
                               style: TextStyle(
                                 color: Colors.white
                               ),

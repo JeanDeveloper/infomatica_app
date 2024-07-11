@@ -10,7 +10,7 @@ class DeleteCategoryUseCase{
     required this.repository
   });
 
-  Future<Either<Failure, bool>> call(id) async {
+  Future<Either<Failure, bool>> call(int id) async {
     return repository.deleteCategory(id);
   }
 

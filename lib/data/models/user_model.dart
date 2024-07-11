@@ -4,7 +4,7 @@ class UserModel extends User{
 
   UserModel({required super.id, required super.name, required super.username, required super.password});
 
-    factory UserModel.fromJson(json){
+  factory UserModel.fromJson(json){
     return UserModel(
       id:json['id'], 
       name: json['name'], 

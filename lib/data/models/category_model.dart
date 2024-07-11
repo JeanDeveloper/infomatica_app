@@ -1,5 +1,14 @@
 import 'package:infomatica_app/domain/entities/category.dart';
 
+
+List<CategoryModel> categoryModelFromJson( List<dynamic> jsonList ){
+  return jsonList.map(
+    (e) => CategoryModel.fromJson(e as Map<String, dynamic>),
+  ).toList();
+}
+
+
+
 class CategoryModel extends Category{
 
   CategoryModel({

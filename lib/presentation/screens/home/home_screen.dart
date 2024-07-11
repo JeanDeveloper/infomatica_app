@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infomatica_app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:infomatica_app/presentation/blocs/main/main_bloc.dart';
+import 'package:infomatica_app/presentation/screens/category/add_category_screen.dart';
 import 'package:infomatica_app/presentation/screens/login/login_screen.dart';
+import 'package:infomatica_app/presentation/screens/sale/new_sale_screen.dart';
+import 'package:infomatica_app/presentation/widgets/tabs/category_tab.dart';
+import 'package:infomatica_app/presentation/widgets/tabs/product_tab.dart';
+import 'package:infomatica_app/presentation/widgets/tabs/sale_tab.dart';
+import 'package:infomatica_app/presentation/widgets/tabs/sub_category_tab.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,9 +28,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
 
           if( state is MainInitial ){
-            return const Center(
-              child: Text("Ventas"),
-            );
+            return const SaleTab();
           }
 
           if( state is ChangingIndex ) {
@@ -36,21 +40,13 @@ class HomeScreen extends StatelessWidget {
           if( state is ChangedIndex ){
             switch (state.currentIndex) {
               case 0:
-                return const Center(
-                  child: Text("Ventas"),
-                );
+                return const SaleTab();
               case 1:
-                return const Center(
-                  child: Text("Productos"),
-                );
+                return const ProductTab();
               case 2:
-                return const Center(
-                  child: Text("Categoria"),
-                );
+                return const CategoryTab();
               case 3:
-                return const Center(
-                  child: Text("Subcategoria"),
-                );
+                return const SubCategoryTab();
               case 4:
                 return const Center(
                   child: Text("Reporte Ventas"),
@@ -85,7 +81,12 @@ class HomeScreen extends StatelessWidget {
           if( state is MainInitial ) {
             return FloatingActionButton(
               onPressed: (){
-                print("Por default");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ( _ ) => NewSaleScreen()
+                  )
+                );
               },
               child: const Icon(Icons.add),
             );
@@ -102,7 +103,12 @@ class HomeScreen extends StatelessWidget {
             return switch ( state.currentIndex ) {
               0  => FloatingActionButton( 
                 onPressed: (){
-                  print("primera");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ( _ ) => const NewSaleScreen()
+                    )
+                  );
                 },
                 child: const Icon(Icons.add),
               ),
@@ -114,7 +120,12 @@ class HomeScreen extends StatelessWidget {
               ),
               2  => FloatingActionButton( 
                 onPressed: (){
-                  print("tercera");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ( _ ) => const AddCategoryScreen()
+                    )
+                  );
                 },
               child: const Icon(Icons.add),
               ),
@@ -207,44 +218,44 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pop(context); 
               },
             ),
-            ExpansionTile(
-              leading: const Icon(Icons.report),
-              title: const Text('Reporte'),
-              children: <Widget>[
-                ListTile(
-                  title: const Text('Ventas'),
-                  onTap: () {
-                    // Navegar a la página de Reporte Ventas
-                    BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(4)); 
-                    Navigator.pop(context); 
-                  },
-                ),
-                ListTile(
-                  title: const Text('Productos'),
-                  onTap: () {
-                    // Navegar a la página de Reporte Productos
-                    BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(5)); 
-                    Navigator.pop(context); 
-                  },
-                ),
-                ListTile(
-                  title: const Text('Categorías'),
-                  onTap: () {
-                    // Navegar a la página de Reporte Categorías
-                    BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(6)); 
-                    Navigator.pop(context); 
-                  },
-                ),
-                ListTile(
-                  title: const Text('Subcategorías'),
-                  onTap: () {
-                    // Navegar a la página de Reporte Subcategorías
-                    BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(7)); 
-                    Navigator.pop(context); 
-                  },
-                ),
-              ],
-            ),
+            // ExpansionTile(
+            //   leading: const Icon(Icons.report),
+            //   title: const Text('Reporte'),
+            //   children: <Widget>[
+            //     ListTile(
+            //       title: const Text('Ventas'),
+            //       onTap: () {
+            //         // Navegar a la página de Reporte Ventas
+            //         BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(4)); 
+            //         Navigator.pop(context); 
+            //       },
+            //     ),
+            //     ListTile(
+            //       title: const Text('Productos'),
+            //       onTap: () {
+            //         // Navegar a la página de Reporte Productos
+            //         BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(5)); 
+            //         Navigator.pop(context); 
+            //       },
+            //     ),
+            //     ListTile(
+            //       title: const Text('Categorías'),
+            //       onTap: () {
+            //         // Navegar a la página de Reporte Categorías
+            //         BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(6)); 
+            //         Navigator.pop(context); 
+            //       },
+            //     ),
+            //     ListTile(
+            //       title: const Text('Subcategorías'),
+            //       onTap: () {
+            //         // Navegar a la página de Reporte Subcategorías
+            //         BlocProvider.of<MainBloc>(context).add(ChangeTabEvent(7)); 
+            //         Navigator.pop(context); 
+            //       },
+            //     ),
+            //   ],
+            // ),
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if(state is AuthLogout){

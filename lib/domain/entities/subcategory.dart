@@ -1,16 +1,16 @@
 import 'package:infomatica_app/domain/entities/category.dart';
 
-class Subcategory{
-
+class SubCategory {
   int? id;
   String name;
-  Category category;
+  int categoryId;
+  Category? category;
 
-  Subcategory({
+  SubCategory({
     this.id,
     required this.name,
-    required this.category
+    required this.categoryId,
+    this.category,
   });
-
 
 }

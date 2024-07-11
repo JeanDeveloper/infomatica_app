@@ -10,7 +10,6 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
-
   final HasLoginUseCase _hasLoginUseCase;
 
   User? user;
@@ -46,7 +45,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-
   String _mapFailureToMessage( Failure failure ){
     switch (failure.runtimeType) {
       case ServerFailure:
@@ -56,6 +54,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  
 }
 

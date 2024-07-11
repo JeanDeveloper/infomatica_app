@@ -1,20 +1,21 @@
+
 import 'package:infomatica_app/domain/entities/category.dart';
 
-class Product{
-  int? id;
+class Product {
+  int id;
   String name;
   String description;
   double price;
-
-  Category category;
+  int categoryId;
+  Category? category;
 
   Product({
-    this.id,
+    required this.id,
     required this.name,
     required this.description,
     required this.price,
+    required this.categoryId,
     required this.category,
   });
-
 
 }
